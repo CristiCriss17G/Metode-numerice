@@ -1,0 +1,1 @@
+[x, nrit] = met_tang('f2', 'fder', -20, 1e-10)

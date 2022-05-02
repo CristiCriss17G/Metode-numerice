@@ -1,0 +1,1 @@
+[sol,nrit]=bissuc(0,1,1e-6)
