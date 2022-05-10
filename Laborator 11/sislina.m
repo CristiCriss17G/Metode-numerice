@@ -1,26 +1,26 @@
-%% qrb
+%% qra
 echo off;
 [m, n] = size(a);
 a1 = a;
 b1 = b; %!
-for k = 1:n
+for k = 1:n - 1
     sig = 0;
-    for i = k:m
+    for i = k:n
         sig = sig + a(i, k)^2;
     end
     sig = sign(a(k, k)) * sqrt(sig);
-    v = zeros(1, m);
-    for i = 1:m
+    v = zeros(1, n);
+    for i = 1:n
         if i <= k - 1
             v(i) = 0;
-        elseif i == k
+        elseif i == k %!
             v(i) = sig + a(k, k);
         else
             v(i) = a(i, k);
         end
     end
     beta = sig * (sig + a(k, k));
-    q1 = eye(m) - (v' * v) / beta;
+    q1 = eye(n) - (v' * v) / beta;
     a = q1 * a;
     b = q1 * b; %!
 end
