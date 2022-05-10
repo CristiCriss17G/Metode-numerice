@@ -1,0 +1,43 @@
+clear all;load ord2;
+echo off;
+global kp tp zeta u; 
+
+t(1)=t0;
+y(1,1)=y10;
+y(1,2)=y20;
+uc(1)=u;
+tc=t0;
+yc=[y10, y20];
+
+
+
+for k=2:(tf-t0)/q+1,
+    for i=1:q/h,
+        k0=h*ord2b(tc,yc);
+        k1=h*ord2b(tc+h/3,yc+k0/3);
+        k2=h*ord2b(tc+2*h/3,yc+2*k1/3);
+        yc=yc+(k0+3*k2)/4;
+        tc=tc+h;
+        
+    end;
+    t(k)=tc;
+    y(k,1)=yc(1);
+    y(k,2)=yc(2);
+    uc(k)=u;
+    
+end;
+
+clf;
+figure(1)
+subplot(211)
+
+plot(t,y(:,1),'-r',t,uc,'-b');
+grid;
+title('raspuns sistem ordin doi const de timp de intaziere');
+subplot(212)
+
+plot(t,y(:,2),'-b');
+title('derivata raspuns')
+
+xlabel('t[sec]');
+ylabel('raspuns');
