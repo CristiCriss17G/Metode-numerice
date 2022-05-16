@@ -3,3 +3,6 @@
 *.pdf
 Curs*/
 Cursurile de la profesor/
+
+# MatLab autosave
+*.asv
